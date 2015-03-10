@@ -1,66 +1,92 @@
 <html>
 <head>
-	<title>Sorting</title>
-	<script type="text/javascript">
-	function mergeSort (arr) {    
-	    if (arr.length < 2) return arr;
-	    
-	    var mid = Math.floor(arr.length /2);
-	    var subLeft = mergeSort(arr.slice(0,mid));
-	    var subRight = mergeSort(arr.slice(mid));
-	    
-	    return merge(subLeft, subRight);
-	}
+<title>Sorting</title>
+<script type="text/javascript">
 
-	function merge (a,b) {
-	    var result = [];
-	    while (a.length >0 && b.length >0)
-	        result.push(a[0] < b[0]? a.shift() : b.shift());
-	    return result.concat(a.length? a : b);
-	}
+//generates random number within specified range
+function getRandomInt(min,max)
+{
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-	var test = [1,2,9,3,2,5,14,0];
-	console.log(mergeSort(test)); // -> [0, 1, 2, 2, 3, 5, 9, 14]
+//define object test with edge cases, different sizes etc.
+var test = {};
+test.empty = [];
+test.one = [3];
+test.simple = [1,2,9,3,2,5,14,0];
+//test.hundreds = function {
+//	var hundreds = [];
+//	for i = 1; i<101; i++ {
+//		hundreds.push(getRandomInt(0,11))
+//	};
+//	return hundreds
+//};
+//test.thousands =
+//test.tenthousands =
+//test.hundredthousands =
+
+//console.log(mergeSort(test)); // -> [0, 1, 2, 2, 3, 5, 9, 14
+
+//mergeSort
+//runtime: O(nlog(n)) (avg and worst case)
+//memory: depends
+
+function mergeSort(arr) {    
+    if (arr.length < 2) return arr;
+    
+    //console.log(arr.length);
+    var mid = Math.floor(arr.length /2);
+    //console.log(mid);
+    var subLeft = mergeSort(arr.slice(0,mid));
+    //console.log(subLeft);
+    var subRight = mergeSort(arr.slice(mid));
+    //console.log(subRight);
+    
+    return merge(subLeft, subRight);
+}
+
+function merge(a,b) {
+    var result = [];
+    while (a.length >0 && b.length >0)
+        result.push(a[0] < b[0]? a.shift() : b.shift());
+    return result.concat(a.length? a : b);
+}
+
+var test = [1,2,9,3,2,5,14,0];
+console.log(mergeSort(test)); // -> [0, 1, 2, 2, 3, 5, 9, 14]
 
 
 
-	</script>
-	<script type="text/javascript">
-/*
- * Bubble Sort
- * Write a bubble sort algorithm.
- * You are not allowed to include any libraries.
- *
- * Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that works by repeatedly stepping through the list to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
-  */
+
+
+
+//bubbleSort (or sinking sort).
+//iterates through list, compares each pair and swaps when needed
+//finishes when no more swaps are needed
+//runtime: O(n^2) (avg and worst case)
+//memory: O(1)
+
 
 function bubbleSort(list) {
-  // Write code here
-    var i, j, fwd, bck;
-    for (j = 0; j < list.length * list.length; j++) {
-    
-        for(i = 0; i < list.length; i++) {
-            fwd = list[i],
-            bck = list[i + 1];
-            console.log(i)
-            if (fwd > bck) {
-                list[i] = bck;
-                list[i + 1] = fwd;
-            } 
-            console.log(list)
-        }
+var i, j, fwd, bck;
+for (j = 0; j < list.length * list.length; j++) {
+
+    for(i = 0; i < list.length; i++) {
+        fwd = list[i],
+        bck = list[i + 1];
+        if (fwd > bck) {
+            list[i] = bck;
+            list[i + 1] = fwd;
+        } 
+        console.log(list)
     }
-  return list;
+}
+return list;
 }
 
 bubbleSort([16, 42, 8, 4, 15, 23])
 
 
-
-
-//
-// don't write below this line
-//
 // List of numbers to sort
 var LIST = [16, 42, 8, 4, 15, 23];
 // verify that they are sorted
@@ -75,13 +101,9 @@ function isEqual(actual, expected) {
         div.innerText = 'Success';
         div.classList.add('success');
         return true;
-    }
+    };
     
-	</script>
-	<script type="text/javascript">
-		//  S  E  L  E  C  T  I  O  N        S  O  R  T  !  !  !
-// Sorts ascendingly
-
+//selection sort
 var list = [10, 8, 7, 6, 2, -19];
 
 var selectionsort = function (list) {
@@ -123,15 +145,15 @@ var selectionsort = function (list) {
 // CALLS THE FUNCTION
 selectionsort(list);
 
-	</script>
+</script>
 </head>
 <body>
 
-	<h3>The bubble sort has Runtime O(n^2) on average and worst caseas and memory O(1)</h3>
+	<h3>The bubble sort has Runtime O(n^2) on average and worst cases and memory O(1)</h3>
 
-	<h3>The selection sort has Runtime O(n^2) on average and worst case and memory O(1)</h3>
+	<h3>The selection sort has Runtime O(n^2) on average and worst cases and memory O(1)</h3>
 
-	<h3>The merge sort has an O(nlog(n)) on average and worst case and memory depends</h3>
+	<h3>The merge sort has an O(nlog(n)) on average and worst cases and memory depends</h3>
 
 	<h3>We compare the times of the three sorts and prove their O
 
